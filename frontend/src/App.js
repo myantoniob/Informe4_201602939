@@ -1,6 +1,7 @@
 import './App.css';
 import RegistrarUsuario from './hojas/RegistrarUsuario';
-import IniciarSecion from './hojas/IniciarSecion';
+import IniciarSecion from './hojas/IniciarSesion';
+import Feed from './hojas/Feed';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import NavBar from './hojas/NavBar';
 
@@ -10,13 +11,17 @@ function App() {
       
       <BrowserRouter>
         <NavBar/>
-        
+
           <Routes>
-            <Route path='/' element={<RegistrarUsuario/>} />
+            <Route path='/' element={<Feed/>} />
           </Routes>
 
           <Routes>
-            <Route path='/uno' element={<IniciarSecion/>} />
+            <Route path='/signin' element={<RegistrarUsuario/>} />
+          </Routes>
+
+          <Routes>
+            <Route path='/login' element={<IniciarSecion/>} />
           </Routes>
 
       </BrowserRouter>

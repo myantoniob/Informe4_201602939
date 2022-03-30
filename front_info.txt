@@ -6,4 +6,5 @@ npm install express
 
 npm install --save react-router-dom
 
+npm install bootstrap react-bootstrap
 npm start
