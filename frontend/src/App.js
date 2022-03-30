@@ -1,19 +1,18 @@
 import './App.css';
-import RegistrarUsuario from './hojas/RegistrarUsuario';
-import IniciarSecion from './hojas/IniciarSesion';
-import Feed from './hojas/Feed';
+import RegistrarUsuario from './componentes/inicio/RegistrarUsuario';
+import IniciarSecion from './componentes/inicio/IniciarSesion';
+import Feed from './componentes/usuario/Feed';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import NavBar from './hojas/NavBar';
+import Inicio from './componentes/inicio/Inicio'
 
 function App() {
   return (
     <div className="App">
       
       <BrowserRouter>
-        <NavBar/>
 
           <Routes>
-            <Route path='/' element={<Feed/>} />
+            <Route path='/' element={<Inicio/>} />
           </Routes>
 
           <Routes>
@@ -22,6 +21,10 @@ function App() {
 
           <Routes>
             <Route path='/login' element={<IniciarSecion/>} />
+          </Routes>
+
+          <Routes>
+            <Route path='/user' element={<Feed/>} />
           </Routes>
 
       </BrowserRouter>

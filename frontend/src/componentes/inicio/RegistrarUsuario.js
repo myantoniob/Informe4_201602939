@@ -1,12 +1,14 @@
 import React from "react";
 import {Card, Row, Col, Button, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import InicioNavbar from './InicioNavbar';
 
 function RegistrarUsuario(){
     return (
         <div >
-            <Row className="mt-5">
-                <Col md={{ span: 4, offset: 5 }}> 
+             <InicioNavbar/>
+            <Row className="mt-5 mb-5">
+                <Col md={{ span: 4, offset: 4 }}> 
                     <Card  style={{ width: '25rem' }}>
 
                     <Card.Title className="mb-3 mt-3">Registrarse </Card.Title>

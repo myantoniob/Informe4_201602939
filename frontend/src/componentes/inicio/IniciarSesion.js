@@ -1,10 +1,13 @@
 import React from "react";
 import {Card, Row, Col, Button, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import InicioNavbar from './InicioNavbar';
 
 function IniciarSecion(){
     return (
+        
         <div >
+            <InicioNavbar/>
             <Row className="mt-5">
                 <Col md={{ span: 5, offset: 5 }}> 
                     <Card  style={{ width: '25rem' }}>
