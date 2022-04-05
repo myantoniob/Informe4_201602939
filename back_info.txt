@@ -1,0 +1,16 @@
+"Para inicializar"
+
+npm init
+
+"installr depencencias"
+npm install mysql express
+
+npm install axios
+npm install cors 
+
+"Para iniciar"
+node index.js
+
+
+
+paquetes de ruts or path

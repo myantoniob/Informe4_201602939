@@ -1,9 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {Card, Row, Col, Button, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import InicioNavbar from './InicioNavbar';
+import Axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 function IniciarSecion(){
+    // * Variables a utilizar
+    const [carnet, setCarnet] = useState(0)
+    const [password, setPassword] = useState("")
+
+    const redirect = useNavigate()
+
+
+    const submitForm = (e) => {
+        e.preventDefault()
+
+        const data = {
+            carnet, password
+        }
+
+        Axios.post('http://localhost:3001/login', data)
+            .then(res => {
+
+                if(res.result.values != null){
+                    localStorage.setItem("carnet", res.data.carnet)
+                    localStorage.setItem("password", res.data.password)
+                    console.log("en login")
+                    //redirect() 
+                    redirect('/')
+                }
+            }) 
+
+    }
+
+
     return (
         
         <div >
@@ -13,16 +44,16 @@ function IniciarSecion(){
                     <Card  style={{ width: '25rem' }}>
 
                     <Card.Title className="mb-3 mt-3">Iniciar Sesion </Card.Title>
-                        <Form>
+                        <Form onSubmit={submitForm}>
 
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Registro Academico</Form.Label>
-                                <Form.Control type="number" placeholder="Registro Academico" />
+                                <Form.Control type="number" placeholder="Registro Academico" onChange={(event) => setCarnet(event.target.value)} value={carnet}/>
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Password" />
+                                <Form.Control type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} value={password}/>
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
