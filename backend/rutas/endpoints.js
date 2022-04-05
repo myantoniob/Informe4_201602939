@@ -5,6 +5,7 @@ const fs = require('fs')
 const mysqlconnection = require('../database.js')
 
 router.get('/', (req, res) => {
+
     res.send("Practicas iniciales")
     
 });
@@ -17,19 +18,15 @@ router.post('/login', (req, res)=>{
         if(err){
             console.log(err)
         }else {
-            console.log(result.values[0])
-            console.log(result.values[1])
-            res.json(result.values[0])
+            res.json({
+                carnet: result.values[0],
+                password: result.values[1]
+        })
             
-        } 
-        //res.json(rows)
-        
-    })
-
-    //if (carnet == result.values[0]){console.log(result.values[0])} 
-    //res.send(result.values)
-    
+        }  
+    })  
 });
+
 
 router.post('/signin', (req, res) => {
     const {carnet, names, lastnames, email, password} = req.body
@@ -41,11 +38,35 @@ router.post('/signin', (req, res) => {
             console.log("Insercion echa")
         })
     console.log(carnet, names, lastnames, email, password)
+    res.json({
+        carne:carnet,
+        names: req.body.names
+    });
+});
+// ************************
+router.get('/categories/:categoryId/productos/:productId', (req, res) => {
+    const {categoryId, productId} = req.params
+    res.json({
+        uno: categoryId,
+        productId,
+        name: 'Product 2',
+        price: 200
+    });
 });
 
 
+router.get('/users', (req, res)=>{
+    const {limit, offset} = req.query;
 
-/*
+    if (limit && offset){
+        res.json({
+            limit,
+            offset
+        });
+    }else {
+        res.send('NO hay params')
+    }
 
-*/
+});
+// *************************
 module.exports = router

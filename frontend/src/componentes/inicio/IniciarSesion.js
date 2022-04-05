@@ -22,16 +22,8 @@ function IniciarSecion(){
 
         Axios.post('http://localhost:3001/login', data)
             .then(res => {
-
-                if(res.result.values != null){
-                    localStorage.setItem("carnet", res.data.carnet)
-                    localStorage.setItem("password", res.data.password)
-                    console.log("en login")
-                    //redirect() 
-                    redirect('/')
-                }
+                console.log(res.carnet)
             }) 
-
     }
 
 
