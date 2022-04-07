@@ -12,23 +12,35 @@ function IniciarSecion(){
 
     const redirect = useNavigate()
 
-
     const submitForm = (e) => {
         e.preventDefault()
 
+        
+
         const data = {
-            carnet, password
+            carnet:carnet, 
+            password: password
         }
 
-        Axios.post('http://localhost:3001/login', data)
+        //console.log(data)
+        Axios.post('/login', data)
             .then(res => {
-                console.log(res.carnet)
+                const pru = res.data.carnet
+        
+                if (pru == carnet)
+                {
+                    localStorage.setItem("carnet", res.data.carnet)
+                    localStorage.setItem("password", res.data.password)
+                    redirect('/user')
+                }
             }) 
+            
     }
+        
+        
 
 
     return (
-        
         <div >
             <InicioNavbar/>
             <Row className="mt-5">
@@ -67,5 +79,4 @@ function IniciarSecion(){
         
     );
 }
-
 export default IniciarSecion;

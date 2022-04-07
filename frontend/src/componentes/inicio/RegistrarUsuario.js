@@ -3,6 +3,7 @@ import {Card, Row, Col, Button, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import InicioNavbar from './InicioNavbar';
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function RegistrarUsuario(){
     // * Varibles
@@ -11,19 +12,25 @@ function RegistrarUsuario(){
     const [lastnames, setLastnames] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    
+    const redirect = useNavigate()
 
     const submitForm = (e) => {
         e.preventDefault()
-
+        
         const data = {
             carnet, names, lastnames,
             email, password
         }
 
-        Axios.post('http://localhost:3001/signin', data)
+        Axios.post('/signin', data)
             .then(res => {
-                if (res.data != null){
-                    localStorage.setItem("carnet", res.data.carnet)
+                if (res.data.id)
+                {
+                    console.log(res.data.id)
+                    redirect('/login')
+                }else {
+                    console.log(res.data.error)
                 }
             })
     }
